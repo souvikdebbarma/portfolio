@@ -1,7 +1,11 @@
 
+import ParticleHead from "../components/ParticleHead/ParticleHead";
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <ParticleHead />
+    </>
   )
 }
 
