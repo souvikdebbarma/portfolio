@@ -8,11 +8,11 @@ import Contact from '../pages/Contact';
 const Router = () => {
   return (
     <Routes>
-        <Route path='/' element={<Navigate to='/Home' />} />
-        <Route path='/' element={<Home />} />
-        <Route path='/' element={<About />} />
-        <Route path='/' element={<Blog />} />
-        <Route path='/' element={<Contact />} />
+        <Route path='/' element={<Navigate to='/home' />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/contact' element={<Contact />} />
     </Routes>
   )
 }
