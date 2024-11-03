@@ -1,63 +1,43 @@
-import { Container, Row } from 'reactstrap';
-import { NavLink, Link } from 'react-router-dom';
-
-
-const Nav__links=[
-  {
-    path:'/home',
-    display:'Home'
-  },
-  {
-    path:'/about',
-    display:'About'
-  },
-  {
-    path:'/blog',
-    display:'Blog'
-  },
-  {
-    path: '/contact',
-    display:'Contact'
-  },
-]
+import { Link } from 'react-router-dom'
+import { useTheme } from '../../context/ThemeContext'
+import { RiMoonLine, RiSunLine } from '@remixicon/react'
 
 const Header = () => {
+  const { darkMode, toggleDarkMode } = useTheme()
+
   return (
-    <header className="bg-custom-darkvoid py-4">
-      <Container>
-        {/* Top row */}
-        <Row>
-          {/* Left side: Contact Info */}
+    <header className="fixed w-full z-50 bg-white/80 dark:bg-custom-darkvoid/80 backdrop-blur-sm">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="text-2xl font-bold text-custom-darkvoid dark:text-custom-snow inter-700">
+            Souvik
+          </Link>
 
-          {/* Right side: Social Media Icons */}
-          
-        </Row>
-
-        {/* Bottom Row */}
-        <Row>
-          <div>
-            {/* logo */}
-          <div className="logo">
-            <button className='font-sans inter-700'>Souvik.</button>
-          </div>
-          {/* logo end */}
-
-          {/* menu start */}
-          <div className="navigation ">
-            <ul className="">
-              {Nav__links.map((item, index) => (
-                <li className="nav__item" key={index}>
-                  <NavLink to={item.path}>{item.display}</NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* menu end */}
-          </div>
-        </Row>
-      </Container>
+          <nav className="flex items-center space-x-8">
+            <Link to="/home" className="text-custom-darkvoid dark:text-custom-snow hover:text-custom-liquidlava transition-colors inter-500">
+              Home
+            </Link>
+            <Link to="/about" className="text-custom-darkvoid dark:text-custom-snow hover:text-custom-liquidlava transition-colors inter-500">
+              About
+            </Link>
+            <Link to="/contact" className="text-custom-darkvoid dark:text-custom-snow hover:text-custom-liquidlava transition-colors inter-500">
+              Contact
+            </Link>
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg bg-custom-snow/10 hover:bg-custom-snow/20 transition-colors"
+            >
+              {darkMode ? (
+                <RiSunLine className="text-custom-snow text-xl" />
+              ) : (
+                <RiMoonLine className="text-custom-darkvoid text-xl" />
+              )}
+            </button>
+          </nav>
+        </div>
+      </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

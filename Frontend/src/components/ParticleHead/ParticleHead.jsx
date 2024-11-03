@@ -1,116 +1,91 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { OBJLoader } from 'three-stdlib';
-import { gsap } from 'gsap';
 
 const ParticleHead = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    let camera, scene, renderer, p;
-    let mouseX = 0, mouseY = 0;
-    let windowHalfX = window.innerWidth / 2;
-    let windowHalfY = window.innerHeight / 2;
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    containerRef.current.appendChild(renderer.domElement);
 
-    // Save containerRef to a local variable
-    const currentContainer = containerRef.current;
+    // Create particles
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 5000;
+    const posArray = new Float32Array(particlesCount * 3);
 
-    const init = () => {
-      // Camera
-      camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 2000);
-      camera.position.z = 300;
+    for(let i = 0; i < particlesCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 5;
+    }
 
-      // Scene
-      scene = new THREE.Scene();
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
-      // Particle Geometry using BufferGeometry
-      const p_geom = new THREE.BufferGeometry();
-      const positions = [];
+    // Create material
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.005,
+      color: '#F56E0F', // Your custom-liquidlava color
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending
+    });
 
-      const p_material = new THREE.PointsMaterial({
-        color: 0xFFFFFF,
-        size: 1.9,
-      });
+    // Create mesh
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
 
-      // Loader for the OBJ model
-      const loader = new OBJLoader();
-      loader.load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/40480/head.obj', (object) => {
-        object.traverse(function (child) {
-          if (child instanceof THREE.Mesh) {
-            const scale = 8;
-            const vertices = child.geometry.attributes.position.array;
-            for (let i = 0; i < vertices.length; i += 3) {
-              positions.push(vertices[i] * scale, vertices[i + 1] * scale, vertices[i + 2] * scale);
-            }
-          }
-        });
+    camera.position.z = 2;
 
-        // Set the positions as a buffer attribute to the geometry
-        p_geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    // Mouse movement effect
+    let mouseX = 0;
+    let mouseY = 0;
 
-        // Create Particle System
-        p = new THREE.Points(p_geom, p_material);
-        scene.add(p);
-      });
-
-      // Renderer
-      renderer = new THREE.WebGLRenderer({ alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setClearColor(0x000000, 0); // transparent background
-
-      // Append renderer to the container
-      if (currentContainer) {
-        currentContainer.appendChild(renderer.domElement);
-      }
-
-      // Event listeners
-      document.addEventListener('mousemove', onDocumentMouseMove, false);
-      window.addEventListener('resize', onWindowResize, false);
+    const handleMouseMove = (event) => {
+      mouseX = event.clientX / window.innerWidth - 0.5;
+      mouseY = event.clientY / window.innerHeight - 0.5;
     };
 
-    const onWindowResize = () => {
-      windowHalfX = window.innerWidth / 2;
-      windowHalfY = window.innerHeight / 2;
+    window.addEventListener('mousemove', handleMouseMove);
 
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-
-    const onDocumentMouseMove = (event) => {
-      mouseX = (event.clientX - windowHalfX) / 2;
-      mouseY = (event.clientY - windowHalfY) / 2;
-    };
-
+    // Animation
     const animate = () => {
-      gsap.ticker.add(render);
-    };
+      requestAnimationFrame(animate);
 
-    const render = () => {
-      camera.position.x += ((mouseX * 0.5) - camera.position.x) * 0.05;
-      camera.position.y += (-(mouseY * 0.5) - camera.position.y) * 0.05;
+      particlesMesh.rotation.x += 0.001;
+      particlesMesh.rotation.y += 0.001;
 
-      camera.lookAt(scene.position);
+      // Follow mouse
+      particlesMesh.rotation.x += mouseY * 0.1;
+      particlesMesh.rotation.y += mouseX * 0.1;
+
       renderer.render(scene, camera);
     };
 
-    init();
     animate();
 
-    // Cleanup function
-    return () => {
-      document.removeEventListener('mousemove', onDocumentMouseMove);
-      window.removeEventListener('resize', onWindowResize);
-
-      // Clean up the renderer DOM element
-      if (currentContainer) {
-        currentContainer.removeChild(renderer.domElement);
-      }
+    // Handle resize
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
     };
-  }, []); // Empty dependency array ensures this runs only on mount and unmount
 
-  return <div ref={containerRef} style={{ width: '100vw', height: '100vh' }} />;
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+      containerRef.current?.removeChild(renderer.domElement);
+    };
+  }, []);
+
+  return (
+    <div ref={containerRef} className="absolute inset-0 -z-10" />
+  );
 };
 
 export default ParticleHead;

@@ -1,7 +1,8 @@
-
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer className="py-4 text-center">
+      <p>© 2024 Souvik. All rights reserved.</p>
+    </footer>
   )
 }
 
