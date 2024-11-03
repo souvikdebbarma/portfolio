@@ -1,62 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.inter-900 {
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 900;
-    font-style: normal;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.inter-800 {
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
+.dark body {
+  background-color: #151419;
+  color: #FBFBFB;
 }
 
-.inter-700 {
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-}
-  
-.inter-500 {
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-}
-  
-.inter-400 {
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.inter-300 {
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-}
-
-.inter-200 {
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-}
-
-.inter-100 {
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
+body {
+  background-color: #FBFBFB;
+  color: #151419;
 }

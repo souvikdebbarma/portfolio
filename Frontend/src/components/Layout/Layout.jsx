@@ -1,6 +1,9 @@
 import Header from "../Header/Header";
 import Router from "../../router/Router";
 import Footer from "../Footer/Footer";
+import CustomCursor from "../CustomCursor/CustomCursor";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
+import LoadingScreen from "../LoadingScreen/LoadingScreen";
 import { useTheme } from "../../context/ThemeContext";
 
 const Layout = () => {
@@ -8,11 +11,12 @@ const Layout = () => {
 
   return (
     <div className={darkMode ? 'dark' : ''}>
-      <div className="min-h-screen bg-white dark:bg-custom-darkvoid">
+      <LoadingScreen />
+      <CustomCursor />
+      <ScrollToTop />
+      <div className="bg-custom-snow dark:bg-custom-darkvoid">
         <Header />
-        <main className="pt-16">
-          <Router />
-        </main>
+        <Router />
         <Footer />
       </div>
     </div>

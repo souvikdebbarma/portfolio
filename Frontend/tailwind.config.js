@@ -1,23 +1,16 @@
-/* eslint-disable */
-module.exports = {
-    darkMode: 'class',
-    content: ['./src/**/*.{html,js,jsx}'],
-    theme: {
-      extend: {
-        fontFamily: {
-          'inter': ['Inter', 'sans-serif']
-        },
-        colors: {
-          'custom-darkvoid': '#151419',
-          'custom-liquidlava': '#F56E0F',
-          'custom-slateGrey': '#262626',
-          'custom-gluongrey': '#1B1B1E',
-          'custom-snow': '#FBFBFB',
-          'custom-DustyGrey': '#FBFBFB'
-        }
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'custom-darkvoid': '#151419',
+        'custom-liquidlava': '#F56E0F',
+        'custom-snow': '#FBFBFB',
       },
     },
-    plugins: [],
-  };
-/* eslint-enable */
+  },
+  plugins: [],
+}
   
