@@ -3,30 +3,26 @@ import Particles from "react-particles";
 import { loadSlim } from "tsparticles-slim";
 
 const ParticleBackground = () => {
-  const particlesInit = useCallback(async engine => {
+  const particlesInit = useCallback(async (engine) => {
+    console.log("Initializing particles...");
     await loadSlim(engine);
   }, []);
 
   return (
     <Particles
+      className="absolute inset-0"
       id="tsparticles"
       init={particlesInit}
       options={{
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-          },
-          modes: {
-            repulse: {
-              distance: 100,
-              duration: 0.4,
-            },
+        background: {
+          color: {
+            value: "transparent",
           },
         },
+        fullScreen: {
+          enable: false,
+        },
+        fpsLimit: 120,
         particles: {
           color: {
             value: "#F56E0F",
@@ -66,9 +62,33 @@ const ParticleBackground = () => {
           },
         },
         detectRetina: true,
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            onHover: {
+              enable: true,
+              mode: "grab",
+            },
+            resize: true,
+          },
+          modes: {
+            push: {
+              quantity: 4,
+            },
+            grab: {
+              distance: 140,
+              links: {
+                opacity: 0.5
+              }
+            },
+          },
+        },
       }}
     />
   );
 };
 
-export default ParticleBackground; 
+export default ParticleBackground;

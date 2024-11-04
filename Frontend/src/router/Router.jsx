@@ -1,19 +1,16 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Home from '../pages/Home';
-import About from '../pages/About';
-import Contact from '../pages/Contact';
+import { createBrowserRouter } from 'react-router-dom';
+import App from '../App';
+import Hero from '../components/Hero/Hero';
 
-const Router = () => {
-  return (
-    <div className="w-full">
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </div>
-  )
-}
-
-export default Router
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <Hero />,
+      },
+    ],
+  },
+]);
