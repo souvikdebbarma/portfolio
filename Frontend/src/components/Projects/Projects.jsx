@@ -16,15 +16,15 @@ const Projects = () => {
       category: "Web Development"
     },
     {
-        title: "Portfolio Website",
-        description: "My personal portfolio website built with React and Tailwind CSS",
-        longDescription: "A detailed description of the project, its features, challenges faced, and solutions implemented...",
-        tech: ["React", "Tailwind CSS", "GSAP", "Vite"],
-        github: "https://github.com/souvikdebbarma/portfolio",
-        live: "https://yourwebsite.com",
-        image: "/assets/portfolio.png",
-        category: "Web Development"
-      },
+      title: "Pomodoro Timer",
+      description: "This is a Pomodoro Timer application built with Electron and React.",
+      longDescription: "This is a Pomodoro Timer application built with Electron and React. The app helps you manage your time effectively by using the Pomodoro Technique, which involves working in focused intervals (typically 25 minutes) followed by short breaks.",
+      tech: ["JavaScript", "Electron", "React", "Tailwind CSS", "webpack", "babel"],
+      github: "https://github.com/souvikdebbarma/pomodoro_timer",
+      live: "https://yourwebsite.com",
+      image: "/assets/portfolio.png",
+      category: "Web Development"
+    },
     // Add more projects
   ];
 

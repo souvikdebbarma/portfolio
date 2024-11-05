@@ -64,14 +64,14 @@ const Contact = () => {
             </h3>
             <div className="space-y-4">
               <a 
-                href="mailto:your.email@example.com"
+                href="mailto:souvikdbarma23@gmail.com"
                 className="flex items-center gap-4 text-gray-600 dark:text-gray-300 hover:text-custom-liquidlava dark:hover:text-custom-liquidlava"
               >
                 <FiMail size={24} />
-                <span>your.email@example.com</span>
+                <span>souvikdbarma23@gmail.com</span>
               </a>
               <a 
-                href="https://github.com/yourusername"
+                href="https://github.com/souvikdebbarma"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 text-gray-600 dark:text-gray-300 hover:text-custom-liquidlava dark:hover:text-custom-liquidlava"
@@ -80,7 +80,7 @@ const Contact = () => {
                 <span>GitHub</span>
               </a>
               <a 
-                href="https://linkedin.com/in/yourusername"
+                href="https://linkedin.com/in/souvik-debbarma-060216244"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 text-gray-600 dark:text-gray-300 hover:text-custom-liquidlava dark:hover:text-custom-liquidlava"

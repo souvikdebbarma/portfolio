@@ -4,7 +4,7 @@ const About = () => {
     ];
   
     return (
-      <section id="about" className="py-20">
+      <section id="about" className="py-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex items-center gap-4 mb-12">
             <h2 className="text-4xl font-bold text-custom-darkvoid dark:text-custom-snow">
@@ -17,7 +17,7 @@ const About = () => {
           </div>
   
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-            {/* Left side - can be used for image or other content */}
+            {/* Left side - image */}
             <div className="md:col-span-5">
               <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-custom-liquidlava mx-auto">
                 <img
@@ -32,7 +32,7 @@ const About = () => {
             <div className="md:col-span-7 space-y-8">
               <div className="space-y-6 text-lg text-custom-darkvoid/80 dark:text-custom-snow/80">
                 <p>
-                  I'm Souvik Debbarma, motivated computer science student with a background 
+                  I'm <span className="text-custom-liquidlava">Souvik Debbarma</span>, motivated computer science student with a background 
                   of software development and problem solving. Working toward personal 
                   development and eager to contribute my skill in a dynamic environment 
                   that fosters continuous learning and innovation.
@@ -54,7 +54,7 @@ const About = () => {
   
                 <p>
                   Outside of work, I'm interested in following the developments of science. 
-                  I also play a lot of video games. And make TikToks.
+                  I also play a lot of video games. And I like to click pictures.
                 </p>
   
                 {/* Education Section */}
@@ -65,9 +65,16 @@ const About = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-medium">Bachelors in computer science engineering</h4>
-                      <p className="text-custom-liquidlava">
-                        // Add your education details here
-                      </p>
+                      <p className="text-sm">Assam Down Town University</p>
+                      <p className="text-custom-liquidlava">2022 - 2025</p>
+                      <p className="text-sm">Specialization in Cloud Technology and Information Security.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-medium">Diploma in Electrical engineering</h4>
+                      <p className="text-sm">TTAADC Polytechnic Institute</p>
+                      <p className="text-custom-liquidlava">2019 - 2022</p>
+                      <p className="text-sm">Relevant coursework in Electrical Engineering.</p>
                     </div>
                   </div>
                 </div>
