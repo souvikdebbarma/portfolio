@@ -61,3 +61,30 @@ section {
   height: 100vh;
   overflow: hidden;
 }
+
+/* Add Masonry grid styles */
+.masonry-grid {
+  display: flex;
+  width: auto;
+  margin-left: -16px;
+}
+
+.masonry-grid_column {
+  padding-left: 16px;
+  background-clip: padding-box;
+}
+
+.image-loading {
+  filter: blur(10px);
+  clip-path: inset(0);
+}
+
+.image-loaded {
+  filter: blur(0);
+  transition: filter 0.5s linear;
+}
+
+/* Note: You might want to remove or adjust this for Photography section */
+section {
+  min-height: 100vh;
+}
